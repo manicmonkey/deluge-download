@@ -7,8 +7,9 @@ RUN apt-get install wget deluge-common rsync openssh-client git -y && \
 
 WORKDIR /opt
 
-ADD .git .
+ADD .git/ .git/
 
+ADD deluge_download.py ./
 ADD container_entrypoint.sh ./
 RUN chmod +x container_entrypoint.sh
 
