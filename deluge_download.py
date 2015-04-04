@@ -59,7 +59,7 @@ def process_torrents():
             log.info('Remote location: %s', remote_location)
             log.info('Save location: %s', save_location)
  
-            result = rsync("-h", "-r", "-T", partial_dir, "--partial", "--progress", "root@little.duckdns.org:" + remote_location, save_location)#, _out="/home/james/download_rsync.log")
+            result = rsync("-h", "-r", "-T", partial_dir, "--partial", "--progress", "root@" + deluge_host + ":" + remote_location, save_location)#, _out="/home/james/download_rsync.log")
             log.info('Got rsync result: %s', result)
             if (result.exit_code == 0):
                 log.info('Remove label from torrent: %s', torrent)
