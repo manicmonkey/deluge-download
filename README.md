@@ -1,5 +1,7 @@
 # Deluge Download
 
+**resin.io experimental branch**
+
 Dockerized python script which connects to a deluge daemon and uses rsync to download labeled torrents. Also performs a git pull before running so updates can be automatically applied.
 
 Can run as an upstart job using:

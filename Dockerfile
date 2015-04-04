@@ -1,4 +1,4 @@
-FROM ubuntu:15.04
+FROM resin/rpi-raspbian:jessie
 RUN apt-get update
 RUN apt-get install wget deluge-common rsync openssh-client git -y && \
     wget https://bootstrap.pypa.io/get-pip.py && \
@@ -6,8 +6,6 @@ RUN apt-get install wget deluge-common rsync openssh-client git -y && \
     pip install sh
 
 WORKDIR /opt
-
-ADD .git/ .git/
 
 ADD deluge_download.py ./
 ADD container_entrypoint.sh ./

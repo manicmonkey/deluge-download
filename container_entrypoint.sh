@@ -1,4 +1,7 @@
 #!/bin/bash
-git pull
-./deluge_download.py
-sleep 5
+set -e
+while true; do
+  ./deluge_download.py
+  echo "Sleeping for 2 minutes"
+  sleep 120
+done
