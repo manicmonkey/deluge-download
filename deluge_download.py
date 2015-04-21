@@ -2,7 +2,7 @@
  
 from deluge.ui.client import client
 from twisted.internet import reactor, defer
-from sh import rsync # import rsync to be used as a method call
+from sh import sshpass # import sshpass to be used as a method call
 import time
 import os
  
@@ -27,6 +27,8 @@ partial_dir=shared_dir+'/partial'
 complete_dir=shared_dir+'/complete'
  
 # Pull in environment
+rsync_username=os.environ['RSYNC_USER']
+rsync_password=os.environ['RSYNC_PASS']
 deluge_host=os.environ['DELUGE_HOST']
 deluge_username=os.environ['DELUGE_USER']
 deluge_password=os.environ['DELUGE_PASS']
@@ -59,7 +61,8 @@ def process_torrents():
             log.info('Remote location: %s', remote_location)
             log.info('Save location: %s', save_location)
  
-            result = rsync("-h", "-r", "-T", partial_dir, "--partial", "--progress", "root@" + deluge_host + ":" + remote_location, save_location)#, _out="/home/james/download_rsync.log")
+            source = rsync_username + "@" + deluge_host + ":" + remote_location
+            result = sshpass("-p", rsync_password, "rsync", "-h", "-r", "-T", partial_dir, "--partial", "--progress", source, save_location)
             log.info('Got rsync result: %s', result)
             if (result.exit_code == 0):
                 log.info('Remove label from torrent: %s', torrent)
