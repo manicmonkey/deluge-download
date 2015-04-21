@@ -62,7 +62,7 @@ def process_torrents():
             log.info('Save location: %s', save_location)
  
             source = rsync_username + "@" + deluge_host + ":" + remote_location
-            result = sshpass("-p", rsync_password, "rsync", "-h", "-r", "-T", partial_dir, "--partial", "--progress", source, save_location)
+            result = sshpass("-p", rsync_password, "rsync", "-hre", "ssh -o StrictHostKeyChecking=no", "-T", partial_dir, "--partial", "--progress", source, save_location)
             log.info('Got rsync result: %s', result)
             if (result.exit_code == 0):
                 log.info('Remove label from torrent: %s', torrent)
