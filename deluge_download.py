@@ -32,6 +32,13 @@ rsync_password=os.environ['RSYNC_PASS']
 deluge_host=os.environ['DELUGE_HOST']
 deluge_username=os.environ['DELUGE_USER']
 deluge_password=os.environ['DELUGE_PASS']
+
+# Log out configuration
+log.debug('Got rsync_username: [%s]', rsync_username)
+log.debug('Got rsync_password: [%s]', rsync_password)
+log.debug('Got deluge_host: [%s]', deluge_host)
+log.debug('Got deluge_username: [%s]', deluge_username)
+log.debug('Got deluge_password: [%s]', deluge_password)
  
 @defer.inlineCallbacks
 def process_torrents():
