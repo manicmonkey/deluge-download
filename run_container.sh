@@ -1,5 +1,5 @@
 set -e
-docker build -t deluge_download .
+docker build -t deluge_download ./container/
 
 : ${DELUGE_DOWNLOAD_DIR:?"Need to set environment variable DELUGE_DOWNLOAD_DIR"}
 : ${DELUGE_HOST:?"Need to set environment variable DELUGE_HOST"}
